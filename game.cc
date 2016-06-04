@@ -82,11 +82,14 @@ void Game::RenderTriangle() {
     vertex[1] = 40.f;
     triangle[2] = vertex;
 
+
+    //for (int i = 0; i < 3; ++i) triangle[i] /= 45;
     Polygon tri(3, triangle);
+
     Vector2D point;
 
     tri.Translate(state->pos);
-    //tri.Rotate(90.f); //Bug
+    tri.Rotate(45);
 
     uint8_t* row = (uint8_t*)buffer->memory;
     for (int y=0; y < buffer->height; ++y) {
@@ -101,5 +104,6 @@ void Game::RenderTriangle() {
         }
         row += buffer->pitch;
     }
+    tri.Print();
     tri.Clear();
 }

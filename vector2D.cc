@@ -84,7 +84,8 @@ Vector2D& Vector2D::operator*=(float n) {
 Vector2D& Vector2D::operator/=(float n) {
     int x = this->x;
     int y = this->y;
-    this->x = x*(std::cos(n)*PI/180.0f) - y*(std::sin(n)*PI/180.0f);
-    this->y = x*(std::sin(n)*PI/180.0f) + y*(std::cos(n)*PI/180.0f);
+    n *= PI/180.f;
+    this->x = x*(std::cos(n)) - y*(std::sin(n));
+    this->y = x*(std::sin(n)) + y*(std::cos(n));
     return *this;
 }
