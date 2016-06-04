@@ -7,7 +7,9 @@ LIBS += -LC:/SDL/lib -lSDL2
 INCLUDEPATH += C:/SDL/include/SDL
 
 SOURCES += main.cpp \
-    game.cc
+    game.cc \
+    vector2D.cc
 
 HEADERS += \
-    game.h
+    game.h \
+    vector2D.h

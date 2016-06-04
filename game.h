@@ -2,41 +2,41 @@
 #define GAME_H
 
 #include <cstdint>
+#include "vector2D.h"
 
 struct game_state {
-  int dx;
-  int dy;
+    Vector pos;
 };
 
 struct game_memory {
-  bool init;
-  uint64_t permanentStorageSize;
-  void*    permanentStorage;
-  uint64_t transientStorageSize;
-  void*    transientStorage;
+    bool init;
+    uint64_t permanentStorageSize;
+    void*    permanentStorage;
+    uint64_t transientStorageSize;
+    void*    transientStorage;
 };
 
 struct game_offscreen_buffer {
-  int  width;
-  int  height;
-  int  pitch;
-  void *memory;
+    int  width;
+    int  height;
+    int  pitch;
+    void *memory;
 };
 
 struct game_button_state {
-  bool endDown;
+    bool endDown;
 };
 
 struct game_input {
-  union {
-    game_button_state buttns[0];
-    struct {
-      game_button_state up;
-      game_button_state down;
-      game_button_state left;
-      game_button_state right;
+    union {
+        game_button_state buttns[0];
+        struct {
+            game_button_state up;
+            game_button_state down;
+            game_button_state left;
+            game_button_state right;
+        };
     };
-  };
 };
 
 class Game

@@ -76,6 +76,11 @@ int main()
 
       if (keystate[SDL_SCANCODE_ESCAPE]) break;
 
+      newInput->up.endDown = keystate[SDL_SCANCODE_UP];
+      newInput->down.endDown = keystate[SDL_SCANCODE_DOWN];
+      newInput->left.endDown = keystate[SDL_SCANCODE_LEFT];
+      newInput->right.endDown = keystate[SDL_SCANCODE_RIGHT];
+
       //update game and screen buffer
       SDL_FillRect(surface, NULL, 0x000000);
       game.GameUpdateAndRender();
