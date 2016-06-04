@@ -1,27 +1,30 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-class Vector {
+class Vector2D
+{
     public:
-        Vector();
-        ~Vector();
+        Vector2D();
+        ~Vector2D();
 
         float x;
         float y;
 
         void operator=(float*);
-        void operator=(Vector);
+        void operator=(Vector2D);
         float& operator[](int);
 
-        float operator*(Vector&);
+        float operator*(Vector2D&);
 
-        Vector operator+(Vector&);
-        Vector operator-(Vector&);
-        Vector operator*(float);
+        Vector2D operator+(Vector2D&);
+        Vector2D operator-(Vector2D&);
+        Vector2D operator*(float);
+        Vector2D operator/(float);
 
-        Vector& operator+=(Vector&);
-        Vector& operator-=(Vector&);
-        Vector& operator*=(float);
+        Vector2D& operator+=(Vector2D&);
+        Vector2D& operator-=(Vector2D&);
+        Vector2D& operator*=(float);
+        Vector2D& operator/=(float);
 
 };
 

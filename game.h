@@ -5,7 +5,7 @@
 #include "vector2D.h"
 
 struct game_state {
-    Vector pos;
+    Vector2D pos;
 };
 
 struct game_memory {
@@ -53,7 +53,6 @@ class Game
 
         void RenderGradient();
         void RenderTriangle();
-        bool PnPoly();
 };
 
 #endif // GAME_H

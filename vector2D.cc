@@ -1,71 +1,91 @@
 #include "vector2D.h"
 
-Vector::Vector() {
+#include <iostream>
+#include <cmath>
+#define PI 3.14159265
+
+Vector2D::Vector2D() {
     this->x = 0;
     this->y = 0;
 }
 
-Vector::~Vector() {}
+Vector2D::~Vector2D() {}
 
 // Subscript
-float& Vector::operator[](int n) {
-    if (n == 0) return this->x;
-    if (n == 1) return this->y;
+float& Vector2D::operator[](int n) {
+    if (n%2 == 0) return this->x;
+    if (n%2 == 1) return this->y;
     return this->x;
 }
 
 // Dot-Product on two Vectors
-float Vector::operator*(Vector& v) {
-    float temp;
-    temp += this->x * v[0];
-    temp += this->y * v[1];
+float Vector2D::operator*(Vector2D& v) {
+    float temp = 0;
+    temp += this->x * v.x;
+    temp += this->y * v.y;
     return temp;
 }
 
 // Binary
-Vector Vector::operator+(Vector& v) {
-    Vector temp = *this;
+Vector2D Vector2D::operator+(Vector2D& v) {
+    Vector2D temp = *this;
     temp += v;
     return temp;
 }
 
-Vector Vector::operator-(Vector& v) {
-    Vector temp = *this;
+Vector2D Vector2D::operator-(Vector2D& v) {
+    Vector2D temp = *this;
     temp -= v;
     return temp;
 }
 
-Vector Vector::operator*(float n) {
-    Vector temp = *this;
+Vector2D Vector2D::operator*(float n) {
+    Vector2D temp = *this;
     temp *= n;
     return temp;
 }
 
+Vector2D Vector2D::operator/(float n) {
+    Vector2D temp = *this;
+    temp /= n;
+    return temp;
+}
+
 // Assignment
-void Vector::operator=(Vector v) {
+void Vector2D::operator=(Vector2D v) {
+    this->x = v.x;
+    this->y = v.y;
+}
+
+void Vector2D::operator=(float *v) {
     this->x = v[0];
     this->y = v[1];
 }
 
-void Vector::operator=(float *v) {
-    this->x = v[0];
-    this->y = v[1];
-}
-
-Vector& Vector::operator+=(Vector& v) {
-    this->x += v[0];
-    this->y += v[1];
+Vector2D& Vector2D::operator+=(Vector2D& v) {
+    this->x += v.x;
+    this->y += v.y;
     return *this;
 }
 
-Vector& Vector::operator-=(Vector& v) {
+Vector2D& Vector2D::operator-=(Vector2D& v) {
     this->x -= v[0];
     this->y -= v[1];
     return *this;
 }
 
-Vector& Vector::operator*=(float n) {
+Vector2D& Vector2D::operator*=(float n) {
     this->x *= n;
     this->y *= n;
+    return *this;
+}
+
+// rotate
+Vector2D& Vector2D::operator/=(float n) {
+    int x = this->x;
+    int y = this->y;
+
+    this->x = x*(std::cos(n)*PI/180.0f) - y*(std::sin(n)*PI/180.0f);
+    this->y = x*(std::sin(n)*PI/180.0f) + y*(std::cos(n)*PI/180.0f);
     return *this;
 }

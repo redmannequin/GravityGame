@@ -50,9 +50,9 @@ int main()
 
     // game memory
     game_memory gameMemory = {};
-    gameMemory.permanentStorageSize = Megabytes(64);
+    gameMemory.permanentStorageSize = Megabytes(1);
     gameMemory.permanentStorage = ::operator new(gameMemory.permanentStorageSize);
-    gameMemory.transientStorageSize = Gigabytes(1);
+    gameMemory.transientStorageSize = Kilobytes(1);
     gameMemory.transientStorage = ::operator new(gameMemory.transientStorageSize);
 
     // screen buffer
@@ -64,6 +64,7 @@ int main()
 
     Game game(&gameMemory, &buffer, newInput);
 
+    SDL_Texture *texture;
     // game loop
     while (1) {
       // events
@@ -75,7 +76,6 @@ int main()
       const Uint8 *keystate = SDL_GetKeyboardState(NULL);
 
       if (keystate[SDL_SCANCODE_ESCAPE]) break;
-
       newInput->up.endDown = keystate[SDL_SCANCODE_UP];
       newInput->down.endDown = keystate[SDL_SCANCODE_DOWN];
       newInput->left.endDown = keystate[SDL_SCANCODE_LEFT];
@@ -86,11 +86,10 @@ int main()
       game.GameUpdateAndRender();
 
       // render to screen
-      SDL_RenderClear(renderer);
-      SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface); // hardware rendering context
+      texture = SDL_CreateTextureFromSurface(renderer, surface); // hardware rendering context
       SDL_RenderCopy(renderer, texture, NULL, NULL);
       SDL_RenderPresent(renderer);
-      SDL_DestroyTexture(texture);
+      SDL_RenderClear(renderer);
 
       // swap old and new inputs
       game_input *temp = newInput;
@@ -99,6 +98,7 @@ int main()
 
     }
 
+    SDL_DestroyTexture(texture);
     SDL_FreeSurface(surface);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

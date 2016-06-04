@@ -8,8 +8,10 @@ INCLUDEPATH += C:/SDL/include/SDL
 
 SOURCES += main.cpp \
     game.cc \
-    vector2D.cc
+    vector2D.cc \
+    polygon.cc
 
 HEADERS += \
     game.h \
-    vector2D.h
+    vector2D.h \
+    polygon.h
