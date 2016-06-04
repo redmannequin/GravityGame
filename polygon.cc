@@ -22,11 +22,10 @@ void Polygon::setPolygon(int n, Vector2D * points) {
     }
 }
 
-Polygon::~Polygon(){
-    delete[] points;
-}
+Polygon::~Polygon(){}
 
 void Polygon::Clear() {
+    delete[] points;
 }
 
 void Polygon::Translate(Vector2D & disp) {
@@ -38,15 +37,7 @@ void Polygon::Scale(float n) {
 }
 
 void Polygon::Rotate(float n) {
-    float x, y, c, s;
-    for (int i=0; i < n; ++i) {
-        x = points[i].x;
-        y = points[i].y;
-        c = cos(n);
-        s = sin(n);
-        points[i].x = (float) x*(c*PI/180.f) - y*(s*PI/180.f);
-        points[i].y = (float) x*(s*PI/180.f) + y*(c*PI/180.f);
-    }
+    for (int i = 0; i < n; ++i) points[i] /= n;
 }
 
 bool Polygon::PnPoly(Vector2D & point) {

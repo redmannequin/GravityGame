@@ -86,7 +86,7 @@ void Game::RenderTriangle() {
     Vector2D point;
 
     tri.Translate(state->pos);
-    //tri.Rotate(90.f);
+    //tri.Rotate(90.f); //Bug
 
     uint8_t* row = (uint8_t*)buffer->memory;
     for (int y=0; y < buffer->height; ++y) {
@@ -101,5 +101,5 @@ void Game::RenderTriangle() {
         }
         row += buffer->pitch;
     }
-    //tri.Clear();
+    tri.Clear();
 }
