@@ -17,7 +17,12 @@ Basic Polygon Class:
   - convex polygons only (for now)
   - tranlate
   - scale
-  - rotate (Bug)
+  - rotate (Bug) 
+
+Basic Game Update class:
+  - wirtes to surface buffer
+  - processes input
+  - updates objects
 
 ## Compile
 
