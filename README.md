@@ -14,7 +14,7 @@ Basic 2D Vector class:
   - rotate
 
 Basic Polygon Class:
-  - convex polygons only (for now)
+  - convex/concave polygons (Vectr2D points need to be ordered)
   - tranlate
   - scale
   - rotate
@@ -26,7 +26,8 @@ Basic Game Update class:
 
 ## To-Do:
   - fix movement
-  - fix rotation
+  - fix rotation  
+  - add a test world (procedural?)
 
 ## Contributors
 
