@@ -16,7 +16,7 @@ $(TARGET): bin  $(OBJECTS)
 bin:
 	if [ ! -d ./bin ]; then mkdir bin; fi; 
 
-clean: compiler_clean 
+clean: 
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) $(TARGET)
 
