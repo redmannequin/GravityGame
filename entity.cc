@@ -9,7 +9,7 @@ Entity::~Entity() {}
 void Entity::init() {
   pos.x = 0;
   pos.y = 0; 
-  poly.setPolygon(6, 10);
+  poly.setPolygon(3, 10);
 }
 
 void Entity::update(Vector2D& mov) {
