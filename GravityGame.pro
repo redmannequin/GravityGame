@@ -6,7 +6,7 @@ CONFIG -= qt
 LIBS += -LC:/SDL/lib -lSDL2
 INCLUDEPATH += C:/SDL/include/SDL
 
-SOURCES += main.cpp \
+SOURCES += main.cc \
     game.cc \
     vector2D.cc \
     polygon.cc

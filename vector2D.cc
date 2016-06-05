@@ -82,10 +82,10 @@ Vector2D& Vector2D::operator*=(float n) {
 
 // rotate
 Vector2D& Vector2D::operator/=(float n) {
-    int x = this->x;
-    int y = this->y;
     n *= PI/180.f;
-    this->x = x*(std::cos(n)) - y*(std::sin(n));
-    this->y = x*(std::sin(n)) + y*(std::cos(n));
+    Vector2D v = *this;
+    this->x = v.x*(std::cos(n)) - v.y*(std::sin(n));
+    this->y = v.x*(std::sin(n)) + v.y*(std::cos(n));
     return *this;
 }
+

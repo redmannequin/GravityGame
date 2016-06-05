@@ -50,9 +50,9 @@ int main()
 
     // game memory
     game_memory gameMemory = {};
-    gameMemory.permanentStorageSize = Megabytes(1);
+    gameMemory.permanentStorageSize = Kilobytes(1);
     gameMemory.permanentStorage = ::operator new(gameMemory.permanentStorageSize);
-    gameMemory.transientStorageSize = Kilobytes(1);
+    gameMemory.transientStorageSize = 1;
     gameMemory.transientStorage = ::operator new(gameMemory.transientStorageSize);
 
     // screen buffer
@@ -89,7 +89,10 @@ int main()
       texture = SDL_CreateTextureFromSurface(renderer, surface); // hardware rendering context
       SDL_RenderCopy(renderer, texture, NULL, NULL);
       SDL_RenderPresent(renderer);
+      SDL_DestroyTexture(texture);
+
       SDL_RenderClear(renderer);
+
 
       // swap old and new inputs
       game_input *temp = newInput;
@@ -98,7 +101,7 @@ int main()
 
     }
 
-    SDL_DestroyTexture(texture);
+
     SDL_FreeSurface(surface);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

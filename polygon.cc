@@ -13,7 +13,6 @@ Polygon::Polygon(int n, Vector2D* points) {
     setPolygon(n, points);
 }
 
-
 void Polygon::setPolygon(int n, Vector2D * points) {
     this->n = n;
     this->points = new Vector2D[n];
@@ -29,15 +28,15 @@ void Polygon::Clear() {
 }
 
 void Polygon::Translate(Vector2D & disp) {
-    for (int i=0; i < n; ++i) points[i] += disp;
+    for (int i=0; i < this->n; ++i) points[i] += disp;
 }
 
-void Polygon::Scale(float n) {
-    for (int i=0; i < n; ++i) points[i] *= n;
+void Polygon::Scale(float s) {
+    for (int i=0; i < this->n; ++i) points[i] *= s;
 }
 
-void Polygon::Rotate(float n) {
-    for (int i = 0; i < n; ++i) points[i] /= n;
+void Polygon::Rotate(float r) {
+    for (int i=0; i < this->n; ++i) points[i] /= r;
 }
 
 bool Polygon::PnPoly(Vector2D & point) {
@@ -54,7 +53,6 @@ bool Polygon::PnPoly(Vector2D & point) {
     }
     return c;
 }
-
 
 void Polygon::Print() {
     std::cout << "points: " << n << std::endl;
