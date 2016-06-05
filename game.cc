@@ -9,6 +9,8 @@ Game::Game(game_memory * memory, game_offscreen_buffer * buffer, game_input * in
         memory->init = 1;
         state->pos[0] = 0;
         state->pos[1] = 0;
+        state->scl = 0.5;
+        state->rot = 0;
     }
     this->buffer = buffer;
     this->input = input;
@@ -46,10 +48,10 @@ void Game::GameUpdateAndRender() {
     } else {
         if (input->left.endDown) {
             // move left
-            state->pos.x -= 1;
+            state->rot++;
         } else if (input->right.endDown) {
             // move right
-            state->pos.x += 1;
+            state->rot--;
         }
     }
 
@@ -87,9 +89,9 @@ void Game::RenderTriangle() {
 
     Vector2D point;
 
+    tri.Rotate(state->rot);
     tri.Translate(state->pos);
-    tri.Scale(3);
-    tri.Rotate(45);
+    tri.Scale(state->scl);
 
     uint8_t* row = (uint8_t*)buffer->memory;
     for (int y=0; y < buffer->height; ++y) {

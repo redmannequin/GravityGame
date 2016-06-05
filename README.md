@@ -24,8 +24,9 @@ Basic Game Update class:
   - processes input
   - updates objects
 
-## Compile
-
+## To-Do:
+  - fix movement
+  - fix rotation
 
 ## Contributors
 

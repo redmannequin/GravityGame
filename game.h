@@ -6,6 +6,8 @@
 
 struct game_state {
     Vector2D pos;
+    float rot;
+    float scl;
 };
 
 struct game_memory {
