@@ -33,7 +33,7 @@ void Polygon::setPolygon(int n, int r) {
 }
 
 // translates polygon
-void Polygon::tran(Vector2D & disp) {
+void Polygon::tran(Vector2D& disp) {
   for (int i=0; i < this->n; ++i) 
     points[i] += disp;
 }

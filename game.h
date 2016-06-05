@@ -4,6 +4,12 @@
 #include "vector2D.h"
 #include "game_defs.h"
 
+#include "entity.h"
+struct game_state {
+  Vector2D pos;
+  Entity player;
+};
+
 class Game {
   public:
     Game();
