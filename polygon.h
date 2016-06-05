@@ -4,26 +4,22 @@
 #include "vector2D.h"
 
 class Polygon {
-    public:
-        Polygon();
-        Polygon(int, Vector2D*);
+  public:
+    Polygon();
+    ~Polygon();
 
-        ~Polygon();
+    void setPolygon(int, Vector2D[]);
+    void setPolygon(int n, int r); // creates polygon of n vertices
 
-        void setPolygon(int, Vector2D*);
+    void scl(float s); // scales polygon
+    void rot(float r); // rotates polygon
+    void tran(Vector2D& v); // translates polygon
 
-        void Scale(float);
-        void Rotate(float);
-        void Translate(Vector2D&);
+    bool PnPoly(Vector2D&); // checks if point is in polygon
 
-        bool PnPoly(Vector2D&);
-
-        void Print();
-        void Clear();
-
-    private:
-        int n;
-        Vector2D * points;
+  private:
+    int n; // number of vertices
+    Vector2D * points; // vertices
 };
 
-#endif // POLYGON_H
+#endif

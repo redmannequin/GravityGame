@@ -6,7 +6,8 @@ LIBS          = -lSDL2
 OBJECTS       = bin/main.o \
 		bin/game.o \
 		bin/vector2D.o \
-		bin/polygon.o
+		bin/polygon.o \
+		bin/entity.o
  
 TARGET        = GravityGame
 
@@ -20,10 +21,10 @@ clean:
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) $(TARGET)
 
-bin/main.o: ./main.cc ./game.h ./vector2D.h
+bin/main.o: ./main.cc ./game.h 
 	$(CXX) -o ./bin/main.o -c ./main.cc
 
-bin/game.o: ./game.cc ./game.h ./vector2D.h ./polygon.h
+bin/game.o: ./game.cc ./game.h ./vector2D.h
 	$(CXX) -o ./bin/game.o -c ./game.cc
 
 bin/vector2D.o: ./vector2D.cc ./vector2D.h
@@ -31,4 +32,7 @@ bin/vector2D.o: ./vector2D.cc ./vector2D.h
 
 bin/polygon.o: ./polygon.cc ./polygon.h ./vector2D.h
 	$(CXX) -o ./bin/polygon.o -c ./polygon.cc
+
+bin/entity.o:	./entity.cc ./entity.h ./vector2D.h ./polygon.h ./ game_defs.h
+	$(CXX) -o ./bin/entity.o -c ./entity.cc
 
