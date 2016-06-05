@@ -15,3 +15,6 @@ HEADERS += \
     game.h \
     vector2D.h \
     polygon.h
+
+DISTFILES += \
+    README.md
