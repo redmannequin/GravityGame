@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <cstdint>
+#include <stdint.h>
 #include "vector2D.h"
 
 struct game_state {

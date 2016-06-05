@@ -6,7 +6,7 @@
 
 Polygon::Polygon() {
     this->n=0;
-    this->points = nullptr;
+    this->points = NULL;
 }
 
 Polygon::Polygon(int n, Vector2D* points) {
