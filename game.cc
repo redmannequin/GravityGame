@@ -9,7 +9,7 @@ Game::Game(game_memory * memory, game_offscreen_buffer * buffer, game_input * in
         memory->init = 1;
         state->pos[0] = 0;
         state->pos[1] = 0;
-        state->scl = 0.5;
+        state->scl = 1.5;
         state->rot = 0;
     }
     this->buffer = buffer;
@@ -75,21 +75,26 @@ void Game::RenderGradient() {
 
 void Game::RenderTriangle() {
     Vector2D triangle[3];
-    float vertex[2] = {0, 0};
-    triangle[0] = vertex;
-    vertex[0] = 50.f;
-    vertex[1] = 0.f;
-    triangle[1] = vertex;
-    vertex[0] = 25.f;
-    vertex[1] = 40.f;
-    triangle[2] = vertex;
+    triangle[0].x = 0;
+    triangle[0].y = 0;
+    triangle[1].x = 50.f;
+    triangle[1].y = 0.f;
+    triangle[2].x = 25.f;
+    triangle[2].y = 50.f;
 
     //for (int i = 0; i < 3; ++i) triangle[i] /= 45;
     Polygon tri(3, triangle);
 
-    Vector2D point;
+    Vector2D point, vertex;
 
+    vertex.x = -25;
+    vertex.y = -43.3;
+
+    tri.Translate(vertex);
     tri.Rotate(state->rot);
+    vertex *= -1;
+    tri.Translate(vertex);    
+
     tri.Translate(state->pos);
     tri.Scale(state->scl);
 
