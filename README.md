@@ -25,6 +25,7 @@ Basic Game Update class:
   - updates objects
 
 ## To-Do:
+  - game loop constant game speed with maximum fps
   - fix movement
   - fix rotation  
   - add a test world (procedural?)

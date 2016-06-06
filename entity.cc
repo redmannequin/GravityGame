@@ -8,8 +8,11 @@ Entity::~Entity() {}
 
 void Entity::init() {
   pos.x = 0;
-  pos.y = 0; 
+  pos.y = 0;
   poly.setPolygon(3, 10);
+ 
+  rot = 0;
+  acc = 0; 
 }
 
 void Entity::update(Vector2D& mov) {
