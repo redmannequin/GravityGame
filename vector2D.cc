@@ -1,8 +1,5 @@
 #include "vector2D.h"
-
-#include <iostream>
 #include <cmath>
-#define PI 3.14159265
 
 Vector2D::Vector2D() {
   this->x = 0;
@@ -104,3 +101,13 @@ void Vector2D::operator=(float *v) {
   this->y = v[1];
 }
 
+// checks
+bool Vector2D::operator==(Vector2D& v) {
+  return !(*this != v);
+}
+
+bool Vector2D::operator!=(Vector2D& v) {
+  if (this->x != v.x) return 1;
+  else if (this->y != v.y) return 1;
+  return 0;
+}

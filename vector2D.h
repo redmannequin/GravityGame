@@ -1,6 +1,8 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include "defs.h"
+
 class Vector2D {
   public:
     Vector2D();
@@ -39,6 +41,10 @@ class Vector2D {
     void rot(float);
     Vector2D operator/(float);
     Vector2D& operator/=(float); 
+
+    // checks
+    bool operator==(Vector2D&);
+    bool operator!=(Vector2D&); 
 };
 
 #endif

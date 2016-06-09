@@ -3,6 +3,7 @@
 
 #include "game_defs.h"
 #include "game.h"
+#include "defs.h"
 
 #define Kilobytes(n) ((n)*1024)
 #define Megabytes(n) (Kilobytes(n)*1024)
@@ -13,6 +14,10 @@ using namespace std;
 #define TITLE "test"
 #define WIDTH  640
 #define HEIGHT 480
+
+#define TICKS_PER_SECOND 25
+#define SKIP_TICKS (1000/TICKS_PER_SECOND)
+#define MAX_FRAMESKIP 5
 
 int main() {
   SDL_Window   *window   = NULL;
@@ -66,25 +71,40 @@ int main() {
   game.Init(&gameMemory, &buffer, newInput);
 
   SDL_Texture *texture;
+
+  int loops;
+  float interpolation; 
+  Uint32 next_game_tick;
+
+  bool running = true;
+
+  next_game_tick = SDL_GetTicks();
+
   // game loop
-  while (1) {
+  while (running) {
     // events
     SDL_Event e;
     if (SDL_PollEvent(&e) && e.type == SDL_QUIT) break;
-
-    // keyboard states
-    SDL_PumpEvents();
-    const Uint8 *keystate = SDL_GetKeyboardState(NULL);
-
-    if (keystate[SDL_SCANCODE_ESCAPE]) break;
-    newInput->up.endDown = keystate[SDL_SCANCODE_UP];
-    newInput->down.endDown = keystate[SDL_SCANCODE_DOWN];
-    newInput->left.endDown = keystate[SDL_SCANCODE_LEFT];
-    newInput->right.endDown = keystate[SDL_SCANCODE_RIGHT];
-
+    
+    loops = 0;
     //update game and screen buffer
+    while (SDL_GetTicks() > next_game_tick && loops < MAX_FRAMESKIP) {
+      // keyboard states
+      SDL_PumpEvents();
+      const Uint8 *keystate = SDL_GetKeyboardState(NULL);
+      if (keystate[SDL_SCANCODE_ESCAPE]) running = 0;
+      newInput->up.endDown = keystate[SDL_SCANCODE_UP];
+      newInput->down.endDown = keystate[SDL_SCANCODE_DOWN];
+      newInput->left.endDown = keystate[SDL_SCANCODE_LEFT];
+      newInput->right.endDown = keystate[SDL_SCANCODE_RIGHT];
+      game.Update();
+      next_game_tick += SKIP_TICKS;
+      loops++;
+    }
+   
     SDL_FillRect(surface, NULL, 0x000000);
-    game.GameUpdateAndRender();
+    interpolation = float(SDL_GetTicks() + SKIP_TICKS - next_game_tick) / float(SKIP_TICKS);
+    game.Render(interpolation);
 
     // render to screen
     texture = SDL_CreateTextureFromSurface(renderer, surface); // hardware rendering context
@@ -92,14 +112,10 @@ int main() {
     SDL_RenderPresent(renderer);
     SDL_DestroyTexture(texture);
 
-    SDL_RenderClear(renderer);
-
-
     // swap old and new inputs
     game_input *temp = newInput;
     newInput = oldInput;
     oldInput = temp;
-
   }
 
   SDL_FreeSurface(surface);
