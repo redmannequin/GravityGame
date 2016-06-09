@@ -25,6 +25,8 @@ basic templated doubly linked list
 
 ## Goals
   - get draw implemented by june 20th
+  - get a player on screen by jine 20th
+    - with image (optional)
   - get a simple physics engine by end of june
 
 ## To-Do:
