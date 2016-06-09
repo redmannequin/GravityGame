@@ -30,6 +30,7 @@ basic templated doubly linked list
   - get a simple physics engine by end of june
 
 ## To-Do:
+  - implement dynamic linking
   - implement eneity classes 
   - implement draw classes
   - add physics 
