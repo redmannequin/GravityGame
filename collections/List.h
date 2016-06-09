@@ -1,5 +1,5 @@
-#ifndef DLIST_H
-#define DLIST_H
+#ifndef LIST_H
+#define LIST_H
 
 template <class T>
 class DList  {
