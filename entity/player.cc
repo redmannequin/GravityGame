@@ -6,7 +6,7 @@ Player::~Player() {}
 
 void Player::init() {
   
-  this->poly.setPolygon(3, 5);
+  this->poly.setPolygon(5, 12);
 
   this->pos.x = 0;
   this->pos.y = 0;
@@ -23,16 +23,14 @@ void Player::draw(game_offscreen_buffer * buffer, float i) {
   
   Vector2D vertex;  
   uint8_t * row = (uint8_t*)buffer->memory;
-  uint32_t * pixel;
   uint8_t blue, green, red;
 
   for (int y=0; y < buffer->height; ++y) {
     vertex.y = y;
-    pixel = (uint32_t*)row;
+    uint32_t * pixel = (uint32_t*)row;
     for (int x=0; x < buffer->width; ++x) {
       blue = green = red = 0;
       if (this->poly.PnPoly(vertex)) red = 200;
-      red = 20;
       *pixel++ = ((red << 16) | (green << 8) | blue);
     }
     row += buffer->pitch;

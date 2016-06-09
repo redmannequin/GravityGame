@@ -55,7 +55,7 @@ int main() {
 
   // game memory
   game_memory gameMemory = {};
-  gameMemory.permanentStorageSize = Kilobytes(1);
+  gameMemory.permanentStorageSize = Megabytes(1);
   gameMemory.permanentStorage = ::operator new(gameMemory.permanentStorageSize);
   gameMemory.transientStorageSize = 1;
   gameMemory.transientStorage = ::operator new(gameMemory.transientStorageSize);

@@ -10,7 +10,7 @@ Game::~Game() {}
 
 // init
 void Game::Init(game_memory * memory, game_offscreen_buffer * buffer, game_input * input) {
-  state = (game_state *) memory;
+  state = (game_state *) memory->permanentStorage;
   if (!memory->init) {
     memory->init = 1;
     state->pos.x = 0;
