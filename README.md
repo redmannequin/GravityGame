@@ -2,32 +2,34 @@
 
 Creating a simple game to test out ideas manly revolved around physics
 
-## Development
+## Progress
 
-Window handling done with SDL
+displays window with a black screen 
 
-Basic 2D Vector class:
-  - add
-  - sub
-  - mult
-  - dot prduct
-  - rotate
+Game Loop:
+  - updates game 25 times a seconed
+  - redners to screen as fast a possible
 
-Basic Polygon Class:
-  - convex/concave polygons (Vectr2D points need to be ordered)
-  - tranlate
-  - scale
-  - rotate
+basic eneity structure
+  - entity
+    - player
+    - enemy
+    - space object
+      - asteroid
+      - planet
+      - star
 
-Basic Game Update class:
-  - wirtes to surface buffer
-  - processes input
-  - updates objects
+basic 2D vector cass
+basic templated doubly linked list
+
+## Goals
+  - get draw implemented by june 20th
+  - get a simple physics engine by end of june
 
 ## To-Do:
-  - game loop constant game speed with maximum fps
-  - fix movement
-  - fix rotation  
+  - implement eneity classes 
+  - implement draw classes
+  - add physics 
   - add a test world (procedural?)
 
 ## Contributors
