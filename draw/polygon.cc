@@ -73,7 +73,7 @@ Polygon& Polygon::operator-=(Vector2D& v) {
 // scales polygon
 void Polygon::scl(float s) {
   for (int i=0; i < this->n; ++i) 
-    points[i] *= s;
+    this->points[i] *= s;
 }
 
 Polygon Polygon::operator*(float) {}
@@ -82,8 +82,9 @@ Polygon& Polygon::operator*=(float) {}
 // rotates polygon
 void Polygon::rot(float r) {
   for (int i=0; i < this->n; ++i) 
-    points[i] /= r;
+    this->points[i] /= r;
 }
+
 Polygon Polygon::operator/(float) {}
 Polygon& Polygon::operator/=(float) {}
 
@@ -92,11 +93,11 @@ bool Polygon::PnPoly(Vector2D & point) {
   int  j = n-1;
   bool c = 0;
   Vector2D vi, vj;
-  for (int i=0; i < n; j = i++) {
+  for (int i=0; i < this->n; j = (++i)) {
     vi = this->points[i];
     vj = this->points[j];
-    if ((vi.y >= point.y) !=  (vj.y >= point.y)) {
-      if (point.x <= (vj.x-vi.x)*(point.y-vi.y)/(vj.y-vi.y)+vi.x) {
+    if ((vi.y > point.y) !=  (vj.y > point.y)) {
+      if (point.x < (vj.x-vi.x)*(point.y-vi.y)/(vj.y-vi.y)+vi.x) {
         c = !c;
       }
     }

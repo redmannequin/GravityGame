@@ -1,12 +1,16 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "vector2D.h"
-#include "game_defs.h"
-#include "defs.h"
+#include "./vector2D.h"
+#include "./game_defs.h"
+#include "./defs.h"
+
+#include "./entity/entity.h"
+#include "./entity/player.h"
 
 struct game_state {
   Vector2D pos;
+  Player player;
 };
 
 class Game {
@@ -22,6 +26,8 @@ class Game {
     game_state * state;
     game_input * input;
     game_offscreen_buffer * buffer;
+
+    Player * player;
 };
 
 #endif

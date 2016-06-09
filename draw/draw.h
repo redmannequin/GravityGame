@@ -7,7 +7,7 @@ class Draw {
     ~Draw();
 
   protected:
-    
+
 };
 
 #endif

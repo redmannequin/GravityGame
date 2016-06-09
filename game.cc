@@ -15,6 +15,7 @@ void Game::Init(game_memory * memory, game_offscreen_buffer * buffer, game_input
     memory->init = 1;
     state->pos.x = 0;
     state->pos.y = 0;
+    state->player.init();
   }
   this->buffer = buffer;
   this->input = input;
@@ -29,7 +30,10 @@ void Game::Update() {
   else if (!input->left.endDown && input->right.endDown && state->pos.x < 6) state->pos.x++;
   else state->pos.x *= 0.8;
 
+  this->state->player.update();
 }
 
 // updates and renders to buffer game 
-void Game::Render(float i) {}
+void Game::Render(float i) {
+  this->state->player.draw(this->buffer, i);
+}
