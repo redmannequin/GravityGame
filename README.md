@@ -19,7 +19,8 @@ basic eneity structure
       - planet
       - star
 
-basic 2D vector cass
+basic 2D vector class
+
 basic templated doubly linked list
 
 ## Goals
