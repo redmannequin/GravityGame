@@ -93,7 +93,7 @@ bool Polygon::PnPoly(Vector2D & point) {
   int  j = n-1;
   bool c = 0;
   Vector2D vi, vj;
-  for (int i=0; i < this->n; j = (++i)) {
+  for (int i=0; i < this->n; j = i++) {
     vi = this->points[i];
     vj = this->points[j];
     if ((vi.y > point.y) !=  (vj.y > point.y)) {

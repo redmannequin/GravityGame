@@ -1,4 +1,5 @@
-#include "game.h"
+#include "./game.h"
+#include "./vector2D.h"
 
 Game::Game() {
   state = 0;
@@ -10,27 +11,27 @@ Game::~Game() {}
 
 // init
 void Game::Init(game_memory * memory, game_offscreen_buffer * buffer, game_input * input) {
-  state = (game_state *) memory->permanentStorage;
+  this->state = (game_state *) memory->permanentStorage;
   if (!memory->init) {
     memory->init = 1;
-    state->pos.x = 0;
-    state->pos.y = 0;
-    state->player.init();
+    this->state->pos.x = 0;
+    this->state->pos.y = 0;
+    this->state->player.init();
   }
   this->buffer = buffer;
-  this->input = input;
+  this->input  = input;
 }
 
 void Game::Update() {
-  if (input->up.endDown && !input->down.endDown && state->pos.y > -6) state->pos.y--;
-  else if (!input->up.endDown && input->down.endDown && state->pos.y < 6) state->pos.y++;
-  else state->pos.y *= 0.8;
+  if (this->input->up.endDown && !this->input->down.endDown && this->state->pos.y > -6) this->state->pos.y--;
+  else if (!this->input->up.endDown && this->input->down.endDown && this->state->pos.y < 6) this->state->pos.y++;
+  else this->state->pos.y *= 0.9;
     
-  if (input->left.endDown && !input->right.endDown && state->pos.x > -6) state->pos.x--;
-  else if (!input->left.endDown && input->right.endDown && state->pos.x < 6) state->pos.x++;
-  else state->pos.x *= 0.8;
-
-  this->state->player.update();
+  if (this->input->left.endDown && !this->input->right.endDown && this->state->pos.x > -6) this->state->pos.x--;
+  else if (!this->input->left.endDown && this->input->right.endDown && this->state->pos.x < 6) state->pos.x++;
+  else this->state->pos.x *= 0.9;
+  
+  this->state->player.update(&this->state->pos);
 }
 
 // updates and renders to buffer game 
