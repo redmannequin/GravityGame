@@ -79,6 +79,8 @@ int main() {
   bool running = true;
 
   next_game_tick = SDL_GetTicks();
+  Uint32 start = SDL_GetTicks();
+  int frames = 0;
 
   // game loop
   while (running) {
@@ -97,7 +99,11 @@ int main() {
       newInput->down.endDown = keystate[SDL_SCANCODE_DOWN];
       newInput->left.endDown = keystate[SDL_SCANCODE_LEFT];
       newInput->right.endDown = keystate[SDL_SCANCODE_RIGHT];
-      game.Update();
+
+      float t = next_game_tick/1000.f;
+      float dt = SDL_GetTicks()/1000.f;
+      dt = dt - t;
+      game.Update(t, dt);
       next_game_tick += SKIP_TICKS;
       loops++;
     }
@@ -116,11 +122,15 @@ int main() {
     game_input *temp = newInput;
     newInput = oldInput;
     oldInput = temp;
+    
+    ++frames;
+    std::cout << "FPS: " << (frames / ((SDL_GetTicks() - start) / 1000.f)) << std::endl;
   }
 
   SDL_FreeSurface(surface);
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
+
 
   SDL_Quit();
   return 0;

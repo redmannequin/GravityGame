@@ -12,7 +12,10 @@ class Vector2D {
     float y;
 
     // Assignment
-    void set(float, float);   
+    void set(float, float);  
+
+    void operator=(int);  
+    void operator=(float); 
     void operator=(float[]);  
     void operator=(Vector2D); 
 

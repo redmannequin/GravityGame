@@ -16,7 +16,6 @@ class Entity {
 
   protected:
     float rot;
-    Vector2D vel;
     Vector2D pos;
 };
 

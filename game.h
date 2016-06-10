@@ -9,7 +9,7 @@
 #include "./entity/player.h"
 
 struct game_state {
-  Vector2D pos;
+  Vector2D accel;
   Player player;
 };
 
@@ -19,7 +19,7 @@ class Game {
     ~Game();
 
     void Init(game_memory * memory, game_offscreen_buffer * buffer, game_input * input);
-    void Update(); 
+    void Update(float, float); 
     void Render(float interpolation);
 
   private:

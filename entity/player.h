@@ -5,19 +5,42 @@
 #include "../vector2D.h"
 #include "../draw/polygon.h"
 
-class Player: public Entity {
+struct State {
+  Vector2D pos;
+  Vector2D vel;
+};
+
+struct Derivative {
+  Vector2D dx;
+  Vector2D dv;
+};
+
+class Player : public Entity {
   public:
     Player();
     ~Player();
     
     void init();
     void update();
-    void update(Vector2D *);
+    void update(Vector2D *, float, float);
     void draw(game_offscreen_buffer *, float);
     
   protected:
     Polygon poly;
 
+    Vector2D vel;
+    Vector2D dx;
+    Vector2D dv;
+
+    State curr;
+    State prev;
+
+    Derivative evaluate(State * initial, Vector2D accel, float t);
+    Derivative evaluate(State * initial, Vector2D accel, float t, float dt, Derivative d);
+    void acceleration(State * state, Vector2D * accel);
+    void integrate(State * state, Vector2D accel, float t, float dt);
+    State interpolate(State prev, State curr, float alpha);
+ 
 };
 
 #endif

@@ -91,6 +91,16 @@ void Vector2D::set(float x, float y) {
   this->y = y;
 }
 
+void Vector2D::operator=(int i) {
+  this->x = i;
+  this->y = i;
+}
+
+void Vector2D::operator=(float i) {
+  this->x = i;
+  this->y = i;
+} 
+
 void Vector2D::operator=(Vector2D v) {
   this->x = v.x;
   this->y = v.y;
