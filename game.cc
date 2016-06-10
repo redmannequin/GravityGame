@@ -1,8 +1,8 @@
 #include "./game.h"
 #include "./vector2D.h"
 
-#define ACCEL_MAX 50
-#define ACCEL_FACTOR 5
+#define ACCEL_MAX 100
+#define ACCEL_FACTOR 10
 
 Game::Game() {
   state = 0;

@@ -1,5 +1,7 @@
 #include "./player.h"
 
+#define ACCEL_THRES 5.f
+
 Player::Player() {}
 
 Player::~Player() {}
@@ -100,11 +102,18 @@ Derivative Player::evaluate(State * initial, Vector2D accel, float t, float dt, 
 }
 
 void Player::acceleration(State * state, Vector2D * accel) {
-  if (accel->x == 0 && state->vel.x > 0) accel->x = -(state->vel.x*0.8);
-  else if (accel->x == 0 && state->vel.x < 0) accel->x = (state->vel.x*0.8);
-  
-  if (accel->y == 0 && state->vel.y > 0) accel->y = -(state->vel.y*0.8);
-  else if (accel->y == 0 && state->vel.y < 0) accel->y = (state->vel.y*0.8);
+  if (accel->x == 0) {
+    if (state->vel.x  < ACCEL_THRES && state->vel.x > -ACCEL_THRES) state->vel.x = 0;
+    else if (state->vel.x > 0) accel->x = -(state->vel.x*0.8);
+    else if (state->vel.x < 0) accel->x = (state->vel.x*0.8);
+  }
+
+  if (accel->y == 0) {
+    if (state->vel.y  < ACCEL_THRES && state->vel.y > -ACCEL_THRES) state->vel.y = 0;
+    else if (state->vel.y > 0) accel->y = -(state->vel.y*0.8);
+    else if (state->vel.y < 0) accel->y = (state->vel.y*0.8);
+  }
+
 }
 
 void Player::integrate(State * state, Vector2D accel, float t, float dt) {
@@ -132,8 +141,8 @@ void Player::integrate(State * state, Vector2D accel, float t, float dt) {
 State Player::interpolate(State prev, State curr, float alpha) {
   curr.pos *= alpha;
   curr.vel *= alpha;
-  prev.pos *= alpha;
-  prev.vel *= alpha;
+  prev.pos *= (1-alpha);
+  prev.vel *= (1-alpha);
 
   State state;
   state.pos = curr.pos;

@@ -109,7 +109,7 @@ int main() {
     }
    
     SDL_FillRect(surface, NULL, 0x000000);
-    interpolation = float(SDL_GetTicks() + SKIP_TICKS - next_game_tick) / float(SKIP_TICKS);
+    interpolation = (float(SDL_GetTicks() + (SKIP_TICKS - next_game_tick)) / float(SKIP_TICKS));
     game.Render(interpolation);
 
     // render to screen
@@ -124,7 +124,7 @@ int main() {
     oldInput = temp;
     
     ++frames;
-    std::cout << "FPS: " << (frames / ((SDL_GetTicks() - start) / 1000.f)) << std::endl;
+    //std::cout << "FPS: " << (frames / ((SDL_GetTicks() - start) / 1000.f)) << std::endl;
   }
 
   SDL_FreeSurface(surface);
