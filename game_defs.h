@@ -32,6 +32,7 @@ struct game_input {
       game_button_state down;
       game_button_state left;
       game_button_state right;
+      game_button_state escape;
     };
   };
 };

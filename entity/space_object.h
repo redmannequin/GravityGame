@@ -10,6 +10,7 @@ class SpaceObject : public Entity {
 
     void init();
     void update();
+    void draw(game_offscreen_buffer * buffer, float i);
 
   protected:
 

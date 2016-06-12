@@ -1,8 +1,8 @@
 #include "./game.h"
 #include "./vector2D.h"
 
-#define ACCEL_MAX 100
-#define ACCEL_FACTOR 10
+#define ACCEL_MAX 800
+#define ACCEL_FACTOR 20
 
 Game::Game() {
   state = 0;
@@ -20,24 +20,29 @@ void Game::Init(game_memory * memory, game_offscreen_buffer * buffer, game_input
     this->state->accel.x = 0;
     this->state->accel.y = 0;
     this->state->player.init();
+    this->state->planet.init();
   }
   this->buffer = buffer;
   this->input  = input;
+
+  this->player = &(this->state->player);
+  this->planet = &(this->state->planet);
 }
 
 void Game::Update(float t, float dt) {
   if (this->input->up.endDown && !this->input->down.endDown && this->state->accel.y > -ACCEL_MAX) this->state->accel.y -= ACCEL_FACTOR;
   else if (!this->input->up.endDown && this->input->down.endDown && this->state->accel.y < ACCEL_MAX) this->state->accel.y += ACCEL_FACTOR;
   else this->state->accel.y = 0;
-    
+
   if (this->input->left.endDown && !this->input->right.endDown && this->state->accel.x > -ACCEL_MAX) this->state->accel.x -= ACCEL_FACTOR;
-  else if (!this->input->left.endDown && this->input->right.endDown && this->state->accel.x < ACCEL_MAX) state->accel.x += ACCEL_FACTOR;
+  else if (!this->input->left.endDown && this->input->right.endDown && this->state->accel.x < ACCEL_MAX) this->state->accel.x += ACCEL_FACTOR;
   else this->state->accel.x = 0;
-  
-  this->state->player.update(&this->state->accel, t, dt);
+
+  this->player->update(&this->state->accel, t, dt);
 }
 
 // updates and renders to buffer game 
 void Game::Render(float i) {
   this->state->player.draw(this->buffer, i);
+ // this->state->planet.draw(this->buffer, i);
 }

@@ -1,9 +1,10 @@
 CXX		= g++
 DEL_FILE	= rm -f
 LINK		= g++
-LIBS		= -lSDL2 
+LIBS		= -lSDL2 -lSDL2_image -lGL
  
 OBJECTS		= bin/main.o		\
+		  bin/window.o		\
 		  bin/game.o		\
 		  bin/vector2D.o	\
 		  bin/draw.o		\
@@ -13,6 +14,7 @@ OBJECTS		= bin/main.o		\
                   bin/player.o		\
 		  bin/enemy.o		\
 		  bin/space_object.o	\
+		  bin/planet.o
  
 TARGET		= GravityGame
 
@@ -29,10 +31,13 @@ clean:
 #--------------
 #  MAIN GAME 
 #--------------
-bin/main.o:	./main.cc ./game.h ./defs.h 
+bin/main.o:	./main.cc ./game.h ./defs.h ./game_defs.h
 	$(CXX) -o ./bin/main.o -c ./main.cc
 
-bin/game.o:	./game.cc ./game.h ./vector2D.h ./defs.h
+bin/window.o:	./window.cc ./window.h ./defs.h ./game_defs.h
+	$(CXX) -o ./bin/window.o -c ./window.cc
+
+bin/game.o:	./game.cc ./game.h ./vector2D.h ./defs.h ./game_defs.h
 	$(CXX) -o ./bin/game.o -c ./game.cc
 
 bin/vector2D.o:	./vector2D.cc ./vector2D.h ./defs.h
@@ -69,7 +74,7 @@ bin/asteroid.o:	./entity/space_object/asteroid.cc ./entity/space_object/asteroid
 	$(CXX) -o ./bin/entity.o -c ./entity/entity.cc
 
 bin/planet.o:	./entity/space_object/planet.cc ./entity/space_object/planet.h ./entity/entity.h ./draw/draw.h ./vector2D.h ./game_defs.h ./defs.h
-	$(CXX) -o ./bin/entity.o -c ./entity/entity.cc
+	$(CXX) -o ./bin/planet.o -c ./entity/space_object/planet.cc
 
 bin/star.o:	./entity/space_object/star.cc ./entity/space_object/star.h ./entity/entity.h ./draw/draw.h ./vector2D.h ./game_defs.h ./defs.h
 	$(CXX) -o ./bin/star.o -c ./entity/star.cc

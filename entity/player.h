@@ -22,8 +22,8 @@ class Player : public Entity {
     
     void init();
     void update();
-    void update(Vector2D *, float, float);
-    void draw(game_offscreen_buffer *, float);
+    void update(Vector2D * input, float t, float dt);
+    void draw(game_offscreen_buffer * buffer, float i);
     
   protected:
     Polygon poly;

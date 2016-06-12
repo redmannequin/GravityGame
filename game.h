@@ -5,12 +5,15 @@
 #include "./game_defs.h"
 #include "./defs.h"
 
+// entities
 #include "./entity/entity.h"
 #include "./entity/player.h"
+#include "./entity/space_object/planet.h"
 
 struct game_state {
   Vector2D accel;
   Player player;
+  Planet planet;
 };
 
 class Game {
@@ -28,6 +31,7 @@ class Game {
     game_offscreen_buffer * buffer;
 
     Player * player;
+    Planet * planet;
 };
 
 #endif

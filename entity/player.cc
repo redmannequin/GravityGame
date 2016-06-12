@@ -104,14 +104,14 @@ Derivative Player::evaluate(State * initial, Vector2D accel, float t, float dt, 
 void Player::acceleration(State * state, Vector2D * accel) {
   if (accel->x == 0) {
     if (state->vel.x  < ACCEL_THRES && state->vel.x > -ACCEL_THRES) state->vel.x = 0;
-    else if (state->vel.x > 0) accel->x = -(state->vel.x*0.8);
-    else if (state->vel.x < 0) accel->x = (state->vel.x*0.8);
+    else if (state->vel.x > 0) accel->x = -(state->vel.x*0.98);
+    else if (state->vel.x < 0) accel->x = -(state->vel.x*0.98);
   }
 
   if (accel->y == 0) {
     if (state->vel.y  < ACCEL_THRES && state->vel.y > -ACCEL_THRES) state->vel.y = 0;
     else if (state->vel.y > 0) accel->y = -(state->vel.y*0.8);
-    else if (state->vel.y < 0) accel->y = (state->vel.y*0.8);
+    else if (state->vel.y < 0) accel->y = -(state->vel.y*0.8);
   }
 
 }
