@@ -65,7 +65,9 @@ void Window::ConvertBuffer(game_offscreen_buffer * buffer) {
 
 // convert input
 void Window::ConvertInput(game_input * input) {
-  SDL_PumpEvents();
+  SDL_Event e;
+  input->quit = (SDL_PollEvent(&e) && e.type == SDL_QUIT);
+  //SDL_PumpEvents();
   const Uint8 *keystate = SDL_GetKeyboardState(NULL);
   input->up.endDown = keystate[SDL_SCANCODE_UP];
   input->down.endDown = keystate[SDL_SCANCODE_DOWN];

@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "./defs.h"
 #include "./game.h"
 #include "./window.h"
@@ -42,7 +44,7 @@ int main() {
     for (int i=0; win.GetTicks() > next_game_tick && i < MAX_FRAMESKIP; i++) {
       // gets new input
       win.ConvertInput(newInput);
-      if (newInput->escape.endDown) running = 0;
+      if (newInput->escape.endDown || newInput->quit) running = 0;
 
       // calulates time diff 
       float t = next_game_tick/1000.f;
@@ -66,7 +68,7 @@ int main() {
     win.Render();
     
     ++frames;
-    //std::cout << "FPS: " << (frames / ((SDL_GetTicks() - start) / 1000.f)) << std::endl;
+    std::cout << "FPS: " << (frames / ((SDL_GetTicks() - start) / 1000.f)) << std::endl;
   }
 
   win.Destroy();

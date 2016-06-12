@@ -25,6 +25,7 @@ struct game_button_state {
 };
 
 struct game_input {
+  bool quit;
   union {
     game_button_state buttns[0];
     struct {

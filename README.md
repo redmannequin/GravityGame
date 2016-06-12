@@ -4,9 +4,10 @@ Creating a simple game to test out ideas manly revolved around physics
 
 ## Progress
 
-displays window with a black screen 
+creates window and displays player
 
 Game Loop:
+  - gets user input
   - updates game 25 times a seconed
   - redners to screen as fast a possible
 
@@ -23,18 +24,14 @@ basic 2D vector class
 
 basic templated doubly linked list
 
-## Goals
-  - get draw implemented by june 20th
-  - get a player on screen by jine 20th
-    - with image (optional)
-  - get a simple physics engine by end of june
-
 ## To-Do:
   - implement dynamic linking
-  - implement eneity classes 
-  - implement draw classes
-  - add physics 
+  - implement space objects
+  - add movable entity 
+  - add load media
   - add a test world (procedural?)
+  - fix up physics 
+  - add opengl 
 
 ## Contributors
 
