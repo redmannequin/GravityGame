@@ -25,7 +25,6 @@ basic 2D vector class
 basic templated doubly linked list
 
 ## To-Do:
-  - implement dynamic linking
   - implement space objects
   - add movable entity 
   - add load media
