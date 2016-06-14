@@ -2,21 +2,22 @@
 #define ENTITY_H
 
 #include "../game_defs.h"
-#include "../vector2D.h"
 #include "../defs.h"
+
+#include "../math/vector2D.h"
 
 class Entity {
   public:
     Entity();
-    virtual ~Entity();
+    virtual ~Entity() = 0;
 
     virtual void init() = 0;
     virtual void update() = 0;
-    virtual void draw(game_offscreen_buffer *, float) = 0;
+    virtual void draw(float) = 0;
 
   protected:
-    float rot;
-    Vector2D pos;
+    float _rot;
+    Vector2D _pos;
 };
 
 #endif

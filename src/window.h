@@ -2,8 +2,10 @@
 #define WINDOW_H
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include <GL/glew.h>
+#include <SDL2/SDL_opengl.h>
 #include <GL/glu.h>
+#include <GL/gl.h>
 
 #include "defs.h"
 #include "game_defs.h"
@@ -17,8 +19,6 @@ class Window {
     void Render();
     void Destroy();
 
-    //bool loadMedia();
-    void ConvertBuffer(game_offscreen_buffer * buffer);
     void ConvertInput(game_input * input);
     Uint32 GetTicks();
 
@@ -27,9 +27,6 @@ class Window {
     int width;
     
     SDL_Window * window;
-    SDL_Surface * surface;
-    SDL_Texture * texture;
-    SDL_Renderer * renderer;
 };
 
 #endif

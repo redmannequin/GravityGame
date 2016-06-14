@@ -22,13 +22,9 @@ int main() {
   gameMemory.transientStorageSize = 1;
   gameMemory.transientStorage = ::operator new(gameMemory.transientStorageSize);
 
-  // init screen buffer
-  game_offscreen_buffer buffer = {};
-  win.ConvertBuffer(&buffer);
-
   // init game
   Game game;
-  game.Init(&gameMemory, &buffer, newInput);
+  game.Init(&gameMemory, newInput);
   
   float interpolation; 
   bool running = true;

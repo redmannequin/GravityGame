@@ -5,8 +5,6 @@ Window::Window() {
   this->height = 480;
 
   this->window = 0;
-  this->surface = 0;
-  this->renderer = 0;
 }
 
 Window::~Window() {
@@ -19,48 +17,60 @@ bool Window::Init () {
   SDL_Init(SDL_INIT_VIDEO);
 
   // create game window
-  this->window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, this->width, this->height, 0);
+  this->window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, this->width, this->height, SDL_WINDOW_OPENGL);
   if (this->window == NULL) return false;
-  
-  // create render context
-  this->renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-  if (this->renderer == NULL) return false;
 
-  // create surface for software rendering
-  this->surface = SDL_CreateRGBSurface(0, this->width, this->height, 32, 0, 0, 0, 0);
-  if (this->surface == NULL) return false;
-  
-  //Initialize PNG loading
-  int imgFlags = IMG_INIT_PNG;
-  if(!(IMG_Init(imgFlags) & imgFlags)) return false;
-  
+  // set up openGL
+  SDL_GLContext glContext = SDL_GL_CreateContext(this->window);
+
+  GLenum error = glewInit();
+  if (error != 0) return false;
+
+  SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+  glClearColor(0, 0, 0, 0);
+
   return true;
 }
 
 // render
 void Window::Render() {
-    // hardware rendering context
-    texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_RenderCopy(renderer, texture, NULL, NULL);
-    SDL_RenderPresent(renderer);
-    SDL_DestroyTexture(texture);
-    SDL_FillRect(surface, NULL, 0x000000);
+  SDL_GL_SwapWindow(this->window);
+  
+  glClearDepth(1.0);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glMatrixMode(GL_PROJECTION); 
+
+  float a = 2.f / this->width;
+  float b = 2.f / this->height;  
+
+  float proj[] {
+     a,  0,  0,  0,
+     0,  b,  0,  0,
+     0,  0,  1,  0,
+    -1, -1,  0,  1
+  };
+  
+  glLoadMatrixf(proj);
+
+  /*
+  glBegin(GL_TRIANGLES);
+  glColor3f(1, 0, 0);
+  glVertex2f(0, 0);
+  glVertex2f(0, 100);
+  glVertex2f(100, 100);
+  glEnd();
+  */
+
 }
 
 // dertroy
 void Window::Destroy() {
-  SDL_FreeSurface(surface);
-  SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
   SDL_Quit();
-}
-
-// convert buffer
-void Window::ConvertBuffer(game_offscreen_buffer * buffer) {
-  buffer->memory = this->surface->pixels;
-  buffer->width  = this->surface->w;
-  buffer->height = this->surface->h;
-  buffer->pitch  = this->surface->pitch;
 }
 
 // convert input
@@ -79,23 +89,3 @@ void Window::ConvertInput(game_input * input) {
 // Get Ticks
 Uint32 Window::GetTicks() {return SDL_GetTicks();}
 
-/*
-// load media
-bool loadMedia(std::string path) {
-  SDL_Surface * loadedSurface = IMG_Load(path.c_str());  
-  if (loadedSurface == NULL) {
-    std::cout << "Unable to load image: " << path << " ";
-    std::cout << "SDL_image Error: " << IMG_GetError() << std::endl;
-    return false;
-  } else {
-    surface = SDL_ConvertSurface(loadedSurface, this->surface->format, NULL);
-    if (surface == NULL) {
-      std::cout << "Unable to optimize image: " << path << " "; 
-      std::cout << "SDL Error: " << SDL_GetError() << std::endl;
-      return false;
-    }
-    SDL_FreeSurface(loadedSurface);
-  }
-  return true;
-}
-*/

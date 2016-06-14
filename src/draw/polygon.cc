@@ -11,6 +11,18 @@ void Polygon::setPolygon(Vector2D points[]) {
   *this = points;  
 }
 
+void Polygon::draw() {
+  glBegin(GL_TRIANGLES);
+
+  glColor3f(1, 0, 0);
+
+  for (int i=0; i < this->n; ++i) {
+    glVertex2f(this->points[i].x, this->points[i].y);
+  }
+
+  glEnd();
+}
+
 void Polygon::clear() {
   this->n = 0;
   if (this->points != 0) delete[] this->points;

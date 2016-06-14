@@ -2,14 +2,7 @@
 #define GAME_DEFS_H
 
 #include <stdint.h>
-#include "vector2D.h"
-
-struct game_offscreen_buffer {
-  int  width;
-  int  height;
-  int  pitch;
-  void *memory;
-};
+#include "./math/vector2D.h"
 
 struct game_memory {
   bool init;

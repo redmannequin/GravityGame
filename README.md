@@ -4,6 +4,7 @@ Creating a simple game to test out ideas manly revolved around physics
 
 ## Progress
 
+SDL + OPENGL
 creates window and displays player
 
 Game Loop:
@@ -14,23 +15,20 @@ Game Loop:
 basic eneity structure
   - entity
     - player
-    - enemy
-    - space object
-      - asteroid
-      - planet
-      - star
 
 basic 2D vector class
 
-basic templated doubly linked list
-
 ## To-Do:
-  - implement space objects
-  - add movable entity 
   - add load media
   - add a test world (procedural?)
   - fix up physics 
-  - add opengl 
+
+## Build
+  - you need:
+    - openGL: apt-get install mesa-common-dev
+    - GLEW: apt-get install libglew-dev
+    - SDL2: sudo apt-get install libsdl2-dev
+  - run make
 
 ## Contributors
 

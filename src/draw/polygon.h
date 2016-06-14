@@ -1,18 +1,21 @@
 #ifndef POLYGON_H
 #define POLYGON_H
 
-#include "./draw.h"
-#include "../vector2D.h"
-#include "../defs.h"
-//#include "../collections/list.h"
+#include <GL/glew.h>
 
-class Polygon : public Draw {
+#include "../math/vector2D.h"
+
+#include "../defs.h"
+
+class Polygon {
   public:
     Polygon();
     ~Polygon();
 
     void setPolygon(Vector2D[]);
     void setPolygon(int n, int r); // creates polygon of n vertices
+
+    void draw();
 
     void clear();
 

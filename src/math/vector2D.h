@@ -1,7 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include "defs.h"
+#include "../defs.h"
 
 class Vector2D {
   public:

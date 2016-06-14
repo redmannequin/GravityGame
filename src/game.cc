@@ -1,48 +1,59 @@
 #include "./game.h"
-#include "./vector2D.h"
+#include "./math/vector2D.h"
 
 #define ACCEL_MAX 800
 #define ACCEL_FACTOR 20
 
 Game::Game() {
-  state = 0;
-  input = 0;
-  buffer = 0;
+  _state = 0;
+  _input = 0;
+  _player = 0;
 }
 
 Game::~Game() {}
 
 // init
-void Game::Init(game_memory * memory, game_offscreen_buffer * buffer, game_input * input) {
-  this->state = (game_state *) memory->permanentStorage;
+void Game::Init(game_memory * memory, game_input * input) {
+  _state = (game_state *) memory->permanentStorage;
   if (!memory->init) {
     memory->init = 1;
-    this->state->accel.x = 0;
-    this->state->accel.y = 0;
-    this->state->player.init();
-    this->state->planet.init();
+    _state->accel.x = 0;
+    _state->accel.y = 0;
+    _state->player.init();
   }
-  this->buffer = buffer;
-  this->input  = input;
 
-  this->player = &(this->state->player);
-  this->planet = &(this->state->planet);
+  _input  = input;
+  _player = &(_state->player);
 }
 
 void Game::Update(float t, float dt) {
-  if (this->input->up.endDown && !this->input->down.endDown && this->state->accel.y > -ACCEL_MAX) this->state->accel.y -= ACCEL_FACTOR;
-  else if (!this->input->up.endDown && this->input->down.endDown && this->state->accel.y < ACCEL_MAX) this->state->accel.y += ACCEL_FACTOR;
-  else this->state->accel.y = 0;
+  if (_input->up.endDown && !_input->down.endDown && _state->accel.y > -ACCEL_MAX) { 
+    // up button
+    _state->accel.y += ACCEL_FACTOR;
+  } else if (!_input->up.endDown && _input->down.endDown && _state->accel.y < ACCEL_MAX) { 
+    // down button
+    _state->accel.y-= ACCEL_FACTOR;
+  } else {
+    // stops vertical acceleratnio
+    _state->accel.y = 0;
+  }
 
-  if (this->input->left.endDown && !this->input->right.endDown && this->state->accel.x > -ACCEL_MAX) this->state->accel.x -= ACCEL_FACTOR;
-  else if (!this->input->left.endDown && this->input->right.endDown && this->state->accel.x < ACCEL_MAX) this->state->accel.x += ACCEL_FACTOR;
-  else this->state->accel.x = 0;
+  if (_input->left.endDown && !_input->right.endDown && _state->accel.x > -ACCEL_MAX) {
+    // left button down
+    _state->accel.x -= ACCEL_FACTOR;
+  } else if (!_input->left.endDown && _input->right.endDown && _state->accel.x < ACCEL_MAX) { 
+    // right button down
+    _state->accel.x += ACCEL_FACTOR;
+  } else {
+    // stops horizontal acceleration
+    _state->accel.x = 0;
+  }
 
-  this->player->update(&this->state->accel, t, dt);
+  // updates the player pos
+  _player->update(&_state->accel, t, dt);
 }
 
-// updates and renders to buffer game 
+// renders game
 void Game::Render(float i) {
-  this->state->player.draw(this->buffer, i);
- // this->state->planet.draw(this->buffer, i);
+  _state->player.draw(i);
 }
