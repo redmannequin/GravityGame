@@ -3,6 +3,7 @@
 #include "./defs.h"
 #include "./window.h"
 
+#include "game.h"
 #include "game_defs.h"
 
 int main() {
@@ -14,6 +15,10 @@ int main() {
   game_input input[2] = {};
   game_input * oldInput = &input[0];
   game_input * newInput = &input[1];
+
+  // game init
+  Game game;
+  game.Init(newInput);
 
   float interpolation; 
   bool running = true;
@@ -35,9 +40,8 @@ int main() {
       float dt = (SDL_GetTicks()/1000.f) - t;
       next_game_tick += SKIP_TICKS;
 
-      //
       //  game update
-      //     
+      game.Update(t, dt);
 
       // swap old and new inputs
       game_input * temp = newInput;
@@ -47,7 +51,8 @@ int main() {
 
     // game render
     interpolation = (float(SDL_GetTicks() + (SKIP_TICKS - next_game_tick)) / float(SKIP_TICKS));
-    // game render
+    game.Render(interpolation);
+
     // render to screen
     win.Render();
 

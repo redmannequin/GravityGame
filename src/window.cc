@@ -39,10 +39,8 @@ bool Window::Init () {
 void Window::Render() {
   SDL_GL_SwapWindow(_window);
  
-#if CLEAR 
   glClearDepth(1.0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-#endif
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
