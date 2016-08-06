@@ -9,19 +9,11 @@ creates window and displays player
 
 Game Loop:
   - gets user input
-  - updates game 25 times a seconed
-  - redners to screen as fast a possible
+  - updates game 30 times a seconed
+  - renders to screen as fast a possible
 
-basic eneity structure
-  - entity
-    - player
-
-basic 2D vector class
-
-## To-Do:
-  - add load media
-  - add a test world (procedural?)
-  - fix up physics 
+## TO-DO
+MAKE THE GAME 
 
 ## Build
   - you need:

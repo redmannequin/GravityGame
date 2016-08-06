@@ -2,7 +2,6 @@
 #define GAME_DEFS_H
 
 #include <stdint.h>
-#include "./math/vector2D.h"
 
 struct game_memory {
   bool init;

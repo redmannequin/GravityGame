@@ -20,13 +20,13 @@ class Window {
     void Destroy();
 
     void ConvertInput(game_input * input);
-    Uint32 GetTicks();
 
   private:
-    int height;
-    int width;
+    int _width;
+    int _height;
     
-    SDL_Window * window;
+    SDL_GLContext glContext;
+    SDL_Window * _window;
 };
 
 #endif

@@ -4,12 +4,24 @@
 #define PI 3.14159265359f
 #define ArraySize(array) (sizeof(array) / sizeof((array)[0]))
 
-#define Kilobytes(n) ((n)*1024)
-#define Megabytes(n) (Kilobytes(n)*1024)
-#define Gigabytes(n) (Megabytes(n)*1024)
-
-#define TICKS_PER_SECOND 25
+// GAME LOOP
+#define TICKS_PER_SECOND 30
 #define SKIP_TICKS (1000/TICKS_PER_SECOND)
 #define MAX_FRAMESKIP 5
 
+// WINDOW
+#define WIDTH 720
+#define HEIGHT 480
+
+#define BOX 60
+#define PADDING 10
+
+// WALKER
+#define TRAIL 5
+#define STEP 250.f
+#define SIZE 1
+
+#define WALKERS 2000
+
+//PHYSICS
 #endif 
