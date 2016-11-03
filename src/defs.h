@@ -17,7 +17,7 @@
 #define PADDING 10
 
 // WALKER
-#define TRAIL 10
+#define TRAIL 20
 #define STEP 250.f
 #define SIZE 1
 
@@ -25,7 +25,7 @@
 
 //PHYSICS
 #define NUM_P (64*100)
-#define MAX_VEL 10
+#define MAX_VEL 4000
 
 #define LOCAL 128
 
