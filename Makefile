@@ -2,7 +2,7 @@ CXX		= g++
 DEL_FILE	= rm -f
 DEL_DIR		= rm -r
 LINK		= g++
-LIBS		= -lSDL2 -lGL -lGLU -lGLEW
+LIBS		= -lSDL2 -lGL -lGLU -lGLEW -lOpenCl
 
 CLASS_FLAGS	= -g -c -std=c++11
  
