@@ -6,8 +6,7 @@ LIBS		= -lSDL2 -lGL -lGLU -lGLEW
 
 CLASS_FLAGS	= -g -c -std=c++11
  
-PLAT		= bin/main.o		\
-		  bin/window.o
+PLAT	= bin/main.o bin/window.o bin/ocl.o
 
 GAME		= bin/game.o
  
@@ -27,11 +26,14 @@ clean:
 #--------------
 #  MAIN GAME 
 #--------------
-bin/main.o:	./src/main.cc ./src/defs.h ./src/game_defs.h
-	$(CXX) $(CLASS_FLAGS) -o ./bin/main.o ./src/main.cc
+bin/main.o:	./src/main.cpp ./src/defs.h ./src/game_defs.h
+	$(CXX) $(CLASS_FLAGS) -o ./bin/main.o ./src/main.cpp
 
-bin/window.o:	./src/window.cc ./src/window.h ./src/defs.h ./src/game_defs.h
-	$(CXX) $(CLASS_FLAGS) -o ./bin/window.o ./src/window.cc
+bin/window.o:	./src/window.cpp ./src/window.h ./src/defs.h ./src/game_defs.h
+	$(CXX) $(CLASS_FLAGS) -o ./bin/window.o ./src/window.cpp
 
-bin/game.o:	./src/game.cc ./src/game.h ./src/defs.h ./src/game_defs.h
-	$(CXX) $(CLASS_FLAGS) -o ./bin/game.o ./src/game.cc
+bin/game.o:	./src/game.cpp ./src/game.h ./src/defs.h ./src/game_defs.h
+	$(CXX) $(CLASS_FLAGS) -o ./bin/game.o ./src/game.cpp
+
+bin/ocl.o:	./src/ocl.cpp ./src/ocl.h
+	$(CXX) $(CLASS_FLAGS) -o ./bin/ocl.o ./src/ocl.cpp
