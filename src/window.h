@@ -1,11 +1,10 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <SDL2/SDL.h>
-#include <GL/glew.h>
-#include <SDL2/SDL_opengl.h>
-#include <GL/glu.h>
+#include <SDL.h>
+#include <SDL_opengl.h>
 #include <GL/gl.h>
+#include <CL/cl.h>
 
 #include "defs.h"
 #include "game_defs.h"
@@ -13,7 +12,6 @@
 class Window {
   public:
     Window();
-    ~Window();
 
     bool Init();
     void Render();
@@ -25,7 +23,8 @@ class Window {
     int _width;
     int _height;
     
-    SDL_GLContext glContext;
+    SDL_GLContext _glContext;
+    SDL_Surface* _surface;
     SDL_Window * _window;
 };
 
