@@ -26,3 +26,7 @@ MAKE THE GAME
 ## Contributors
 
 Flavio B.
+
+# License
+
+GravityGame is released under the **The GNU General Public License v3.0 (GPLv3)**, which can be found in the `LICENSE.md` file in the root of this project.
