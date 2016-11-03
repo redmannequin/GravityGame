@@ -11,16 +11,17 @@ Game Loop:
   - gets user input
   - updates game 30 times a seconed
   - renders to screen as fast a possible
+  - n*n particle simulation using OpenCL
 
 ## TO-DO
 MAKE THE GAME 
 
-## Build
+## Requirements
   - you need:
-    - openGL: apt-get install mesa-common-dev
-    - GLEW: apt-get install libglew-dev
-    - SDL2: sudo apt-get install libsdl2-dev
-  - run make
+    - OpenGL
+    - OpenCL
+    - GLEW
+    - SDL2 
 
 ## Contributors
 
